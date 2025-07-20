@@ -1,0 +1,31 @@
+{
+	"name": "tempest",
+	"version": "0.1.0",
+	"preview": true,
+	"contributes": {
+		"grammars": [
+			{
+				"scopeName": "text.html.tempest-injection",
+				"path": "./syntaxes/tempest.tmLanguage.json",
+				"injectTo": ["text.html.basic", "text.html.php", "source.php.embedded"]
+			}
+		]
+	},
+	"keywords": ["tempest", "php", "framework"],
+	"displayName": "Tempest",
+	"engines": {
+		"vscode": "^1.80.0"
+	},
+	"publisher": "nhedger",
+	"devDependencies": {
+		"@vscode/vsce": "^3.6.0"
+	},
+	"scripts": {
+		"package": "vsce package"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:nhedger/tempest-vscode.git"
+	},
+	"license": "MIT"
+}

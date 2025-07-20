@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "🧩 Debug Extension (multi-root workspace)",
+			"type": "extensionHost",
+			"request": "launch",
+			"args": [
+				"--disable-extensions",
+				"--extensionDevelopmentKind=node",
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"${workspaceFolder}/test/fixtures"
+			],
+			"outFiles": ["${workspaceFolder}/out/**/*.js"],
+			"sourceMapRenames": true
+		}
+	]
+}

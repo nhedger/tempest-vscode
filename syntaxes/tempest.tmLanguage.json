@@ -1,0 +1,121 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/refs/heads/master/tmlanguage.json",
+	"name": "Tempest View",
+	"scopeName": "text.html.tempest-injection",
+	"injectionSelector": "L:text.html.basic, L:text.html.php, L:source.php.embedded",
+	"patterns": [
+		{
+			"include": "#attribute"
+		},
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#interpolation"
+		}
+	],
+	"repository": {
+		"attribute": {
+			"patterns": [
+				{
+					"comment": "Expression attribute with value",
+					"begin": "(:\\w+)\\s*=\\s*([\"'])",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.attribute-name.directive",
+							"patterns": [
+								{
+									"match": ":(if|elseif)",
+									"name": "keyword.control.conditional"
+								}
+							]
+						},
+						"2": { "name": "punctuation.definition.string.begin.html" }
+					},
+					"end": "\\2",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.string.end.html" }
+					},
+					"contentName": "source.php",
+					"patterns": [
+						{
+							"include": "source.php"
+						}
+					]
+				},
+				{
+					"comment": "Expression attribute without value (like :else)",
+					"match": "(:\\w+)(?=\\s|>|/>)",
+					"captures": {
+						"1": {
+							"name": "entity.other.attribute-name.directive",
+							"patterns": [
+								{
+									"match": ":(else|endif)",
+									"captures": {
+										"1": {
+											"name": "keyword.control.conditional"
+										}
+									}
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"interpolation": {
+			"patterns": [
+				{
+					"comment": "Safe interpolation, e.g. {{ $variable }}",
+					"begin": "{{",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.template.begin.html" }
+					},
+					"end": "}}",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.template.end.html" }
+					},
+					"contentName": "source.php",
+					"patterns": [
+						{
+							"include": "source.php"
+						}
+					]
+				},
+				{
+					"comment": "Unescaped interpolation, e.g. {!! $variable !!}",
+					"begin": "{!!",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.template.begin.html" }
+					},
+					"end": "!!}",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.template.end.html" }
+					},
+					"contentName": "source.php",
+					"patterns": [
+						{
+							"include": "source.php"
+						}
+					]
+				}
+			]
+		},
+		"comment": {
+			"patterns": [
+				{
+					"begin": "{{--",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.comment.begin.php" }
+					},
+					"end": "--}}",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.comment.end.php" }
+					},
+					"name": "comment.block.php"
+				}
+			]
+		}
+	}
+}
