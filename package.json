@@ -1,6 +1,6 @@
 {
 	"name": "tempest",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"preview": true,
 	"contributes": {
 		"grammars": [
@@ -21,11 +21,17 @@
 		"@vscode/vsce": "^3.6.0"
 	},
 	"scripts": {
-		"package": "vsce package"
+		"package": "vsce package --out tempest.vsix",
+		"prepublish": "npm run package",
+		"publish": "vsce publish --packagePath tempest.vsix"
 	},
 	"repository": {
-		"type": "git",
-		"url": "git@github.com:nhedger/tempest-vscode.git"
+		"type": "git+https",
+		"url": "git+https://github.com/nhedger/tempest-vscode.git"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"vsce": {
+		"dependencies": false
+	},
+	"icon": "images/icon.png"
 }
