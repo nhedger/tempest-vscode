@@ -1,6 +1,7 @@
 {
 	"name": "tempest",
-	"version": "0.1.1",
+	"description": "The framework that gets out of your way",
+	"version": "0.1.2",
 	"preview": true,
 	"contributes": {
 		"grammars": [
